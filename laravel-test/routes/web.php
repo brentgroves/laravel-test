@@ -16,3 +16,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('ID/{id}',function($id) {
+  echo 'ID: '.$id;
+});
+
+Route::get('user/{name?}', function ($name = 'TutorialsPoint') { 
+  return $name;
+});
+
+Route::get('user/profile', 'UserController@showProfile')->name('profile');
+
+Route::get('role',[
+  'middleware' => 'Role:editor',
+  'uses' => 'TestController@index',
+]);
